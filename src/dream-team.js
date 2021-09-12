@@ -1,3 +1,4 @@
+'use strict';
 import { NotImplementedError } from '../extensions/index.js';
 
 /**
@@ -13,7 +14,21 @@ import { NotImplementedError } from '../extensions/index.js';
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
-export default function createDreamTeam(/* members */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function createDreamTeam( members) {
+  //throw new NotImplementedError('Not implemented');
+  const arr = members;
+  let res = [];
+
+  try {
+    arr.forEach(element => {
+      if (typeof element === 'string') {
+        let cut = element.trim().toLocaleUpperCase();
+        res.push(cut[0]);
+      }
+    });
+  }
+  catch(e) {
+    return false;
+  }
+  return res.sort().join('');
 }
