@@ -1,3 +1,4 @@
+'use strict';
 import { NotImplementedError } from '../extensions/index.js';
 
 const MODERN_ACTIVITY = 15;
@@ -17,7 +18,28 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-export default function dateSample(/* sampleActivity */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function dateSample( sampleActivity ) {
+    if (typeof sampleActivity === 'string') {
+
+        if (!isNaN(sampleActivity) &&
+            typeof +sampleActivity === 'number' &&
+            +sampleActivity <= 15 &&
+            +sampleActivity > 0
+           ) {
+            const modernActivuty = 15;
+            const halfLife = 5730;
+    
+            let ln = Math.log(modernActivuty/ sampleActivity);
+            let k = 0.693 / halfLife;
+            let t = Math.ceil(ln / k);
+
+            return t;
+        } else {
+          return false;
+        }
+        
+    } else {
+      return false;
+    }
+    
 }
