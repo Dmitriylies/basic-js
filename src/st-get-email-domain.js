@@ -1,3 +1,4 @@
+'use strict';
 import { NotImplementedError } from '../extensions/index.js';
 
 /**
@@ -10,7 +11,15 @@ import { NotImplementedError } from '../extensions/index.js';
  * For the input 'prettyandsimple@example.com', the output should be 'example.com'
  *
  */
-export default function getEmailDomain(/* email */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getEmailDomain( email ) {
+  //throw new NotImplementedError('Not implemented');
+  let index;
+  email.split('').forEach((item, indexs) => {
+    if (item === '@') {
+      index = indexs;
+    }
+  });
+  let res = email.slice(index+1);
+
+  return res;  
 }
