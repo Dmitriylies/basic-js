@@ -1,3 +1,4 @@
+'use strict';
 import { NotImplementedError } from '../extensions/index.js';
 
 /**
@@ -16,7 +17,21 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  * The result should be 9
  */
-export default function getMatrixElementsSum(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getMatrixElementsSum( matrix ) {
+  //throw new NotImplementedError('Not implemented');
+  let res = 0;
+  for (let i = 0; i < matrix[0].length; ++i) {
+    res += matrix[0][i];
+  }  
+  function calcMatrx(n = 0) {
+    matrix[n].forEach((element, i) => {
+      if(matrix[n-1][i] !== 0) {
+        res += matrix[n][i];
+      } 
+    });
+  }
+  for (let i = 1; i < matrix.length; i++) {
+    calcMatrx(i);
+  }
+  return res;
 }
