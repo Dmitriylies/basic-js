@@ -1,3 +1,4 @@
+'use strict';
 import { NotImplementedError } from '../extensions/index.js';
 
 /**
@@ -12,7 +13,24 @@ import { NotImplementedError } from '../extensions/index.js';
  * For 91, the result should be 1 (9 + 1 = 10, 1 + 0 = 1)
  *
  */
-export default function getSumOfDigits(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getSumOfDigits( n ) {
+  //throw new NotImplementedError('Not implemented');
+  let res = 0;
+  let arr = String(n).split('');
+  
+  function calcRes(num) {
+    for (let i = 0; i < num.length; i++) {
+        res += +arr[i];
+    }
+    arr = String(res).split('');
+
+    if(res > 9) {
+      res = 0;
+      calcRes(arr);
+    }
+  }
+  calcRes(arr);
+
+return res;
+
 }
